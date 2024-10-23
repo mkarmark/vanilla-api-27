@@ -15,7 +15,8 @@ namespace StaticWebAppsEndToEndTesting.GetMessage
         public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
             var response = req.CreateResponse(HttpStatusCode.OK);
-            string message = File.ReadAllText(Path.Join(Environment.CurrentDirectory, "content.txt"));
+            string dotNetVersion = System.Runtime.InteropServices.RuntimeInformation.FrameworkDescription;
+            string message = $"I am running {dotNetVersion}"
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
             response.WriteString(message);
             return response;
