@@ -16,9 +16,9 @@ namespace StaticWebAppsEndToEndTesting.GetMessage
         {
             var response = req.CreateResponse(HttpStatusCode.OK);
             var azure_root = Environment.GetEnvironmentVariable("HOME") + @"\site\wwwroot";
-            string message = File.ReadAllText(Path.Join(azure_root, "content.txt"));
+            string message2 = File.ReadAllText(Path.Join(azure_root, "content.txt"));
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-            response.WriteString(message);
+            response.WriteString(message2);
             return response;
         }
     }
