@@ -15,9 +15,10 @@ namespace StaticWebAppsEndToEndTesting.GetMessage
         public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
         {
             var response = req.CreateResponse(HttpStatusCode.OK);
-            string message = File.ReadAllText(Path.Join(Environment.CurrentDirectory, "content.txt"));
+            var azure_root = Environment.GetEnvironmentVariable("HOME") + @"\site\wwwroot";
+            string message2 = File.ReadAllText(Path.Join(azure_root, "content.txt"));
             response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-            response.WriteString(message);
+            response.WriteString(message2);
             return response;
         }
     }
